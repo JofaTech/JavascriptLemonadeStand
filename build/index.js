@@ -1,83 +1,52 @@
 "use strict";
 
-// const lemonade = {
-//     lemonJuice: 3,
-//     water: 3,
-//     sugar: 1.5,
-//     iceCubes: 10,
-//     [console.log('Hello World')]: 'Hi', 
-//     calculatePrice () {
-//         return (
-//             this.lemonJuice * .3 + 
-//             this.water * .01 + 
-//             this.sugar * .25 + 
-//             this.iceCubes * .05 + 
-//             .75
-//         )
+var _vorpal = _interopRequireDefault(require("vorpal"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+// const order = {
+//     total: 5.00,
+//     lemonades: [
+//         {
+//             lemonJuice: 4,
+//             water: 2,
+//             sugar: 3,
+//             iceCubes: 7,
+//             price: 5
+//         },
+//         {
+//             lemonJuice: 2,
+//             water: 2,
+//             sugar: 1,
+//             iceCubes: 7,
+//             price: 3.5
+//         },
+//         {
+//             lemonJuice: 3,
+//             water: 2,
+//             sugar: .5,
+//             iceCubes: 7,
+//             price: 4.38
+//         },
+//         {
+//             lemonJuice: 3,
+//             water: 2.14,
+//             sugar: 1.25,
+//             iceCubes: 7,
+//             price: 2.49
+//         }
+//     ],
+//     lemonadeStand: {
+//         name: "Cooksys Lemonade Stand"
+//     },
+//     customer: {
+//         name: 'Bob',
+//         phoneNumber: '5552223248'
 //     }
 // }
 
-// function updateLemonade({calculatePrice}, lemonJuice, water, sugar, iceCubes) {
-
-//     return {
-//         //...lemonade,
-//         lemonJuice,
-//         water,
-//         sugar,
-//         iceCubes,
-//         calculatePrice
-//     }
-// }
-
-var a = 10;
-var updateLemonade = function updateLemonade(_ref, lemonJuice, water, sugar, iceCubes) {
-  var calculatePrice = _ref.calculatePrice;
-  return {
-    lemonJuice: lemonJuice,
-    water: water,
-    sugar: sugar,
-    iceCubes: iceCubes,
-    calculatePrice: calculatePrice,
-    a: a
-  };
-};
-var outer = function outer() {
-  var x = 2;
-  var inner = function inner() {
-    var y = 5;
-    return x + y;
-  };
-  return inner;
-};
-var containedInner = outer();
-console.log(containedInner());
-
-// lemonade.water = 8
-
-// //console.log(updateLemonade(lemonade, 5, 2.5, 3, 7))
-// console.log({...lemonade, lemonJuice: 5, water: 2.5, sugar: 3, iceCubes: 7})
-// console.log(lemonade)
-// console.log(updateLemonade(lemonade, 1, 2, 3, 20))
-
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, [1, 2, 3]]
-// const numbersCopy = [...numbers]
-// numbersCopy[10] = [...numbers[10]]
-
-// numbersCopy[10][0] = 5
-// console.log(numbers)
-// console.log(numbersCopy)
-
-// let { water: a, lemonJuice, sugar, iceCubes } = lemonade
-
-// console.log(a)
-// console.log(lemonJuice)
-// console.log(sugar)
-// console.log(iceCubes)
-
-// function add (x, y) {
-//     return x + y
-// }
-
-// const increment = x => x + 1
-
-//console.log((x => x + 1)(5))
+var vorpal = (0, _vorpal["default"])();
+vorpal.command('hello <name> [number]', 'Prints hello to the console').action(function (args, callback) {
+  this.log(args.options);
+  this.log('Hello ' + args.name + ', should I call you at ' + args.number + '?');
+  callback();
+});
+vorpal.show();

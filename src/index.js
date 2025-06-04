@@ -1,87 +1,54 @@
-// const lemonade = {
-//     lemonJuice: 3,
-//     water: 3,
-//     sugar: 1.5,
-//     iceCubes: 10,
-//     [console.log('Hello World')]: 'Hi', 
-//     calculatePrice () {
-//         return (
-//             this.lemonJuice * .3 + 
-//             this.water * .01 + 
-//             this.sugar * .25 + 
-//             this.iceCubes * .05 + 
-//             .75
-//         )
+// const order = {
+//     total: 5.00,
+//     lemonades: [
+//         {
+//             lemonJuice: 4,
+//             water: 2,
+//             sugar: 3,
+//             iceCubes: 7,
+//             price: 5
+//         },
+//         {
+//             lemonJuice: 2,
+//             water: 2,
+//             sugar: 1,
+//             iceCubes: 7,
+//             price: 3.5
+//         },
+//         {
+//             lemonJuice: 3,
+//             water: 2,
+//             sugar: .5,
+//             iceCubes: 7,
+//             price: 4.38
+//         },
+//         {
+//             lemonJuice: 3,
+//             water: 2.14,
+//             sugar: 1.25,
+//             iceCubes: 7,
+//             price: 2.49
+//         }
+//     ],
+//     lemonadeStand: {
+//         name: "Cooksys Lemonade Stand"
+//     },
+//     customer: {
+//         name: 'Bob',
+//         phoneNumber: '5552223248'
 //     }
 // }
 
+import Vorpal from 'vorpal'
 
-// function updateLemonade({calculatePrice}, lemonJuice, water, sugar, iceCubes) {
-    
-//     return {
-//         //...lemonade,
-//         lemonJuice,
-//         water,
-//         sugar,
-//         iceCubes,
-//         calculatePrice
-//     }
-// }
+const vorpal = Vorpal()
 
-let a = 10
+vorpal
+    .command('hello <name> [number]', 'Prints hello to the console')
+    .action(function(args, callback) {
+        this.log(args.options)
+        this.log('Hello ' + args.name + ', should I call you at ' + args.number + '?')
+        callback()
+    })
 
-const updateLemonade = ({ calculatePrice }, lemonJuice, water, sugar, iceCubes) => ({
-        lemonJuice,
-        water,
-        sugar,
-        iceCubes,
-        calculatePrice,
-        a
-})
-
-const outer = () => {
-    let x = 2
-
-    const inner = () => {
-        let y = 5
-        return x + y
-    }
-
-    return inner
-}
-
-const containedInner = outer()
-
-console.log(containedInner())
-
-// lemonade.water = 8
-
-// //console.log(updateLemonade(lemonade, 5, 2.5, 3, 7))
-// console.log({...lemonade, lemonJuice: 5, water: 2.5, sugar: 3, iceCubes: 7})
-// console.log(lemonade)
-// console.log(updateLemonade(lemonade, 1, 2, 3, 20))
-
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, [1, 2, 3]]
-// const numbersCopy = [...numbers]
-// numbersCopy[10] = [...numbers[10]]
-
-// numbersCopy[10][0] = 5
-// console.log(numbers)
-// console.log(numbersCopy)
-
-// let { water: a, lemonJuice, sugar, iceCubes } = lemonade
-
-// console.log(a)
-// console.log(lemonJuice)
-// console.log(sugar)
-// console.log(iceCubes)
-
-
-// function add (x, y) {
-//     return x + y
-// }
-
-// const increment = x => x + 1
-
-//console.log((x => x + 1)(5))
-
+vorpal.show()
