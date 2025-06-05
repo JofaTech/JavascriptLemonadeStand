@@ -1,5 +1,17 @@
 import fs from 'fs'
 
+const curry = (f, arr = []) => (...args) => (
+    a => (a.length === f.length ? f(...a) : curry(f, a)))([...arr, ...args])
+
+// curry(a, b) => a + b
+// (f, arr = []) => (...args) => (a => (a.length === f.length ? f(...a) : curry(f, a)))([...arr, ...args])  
+// Replace ((a,b) => a + b) for f, and default [] for arr
+// (...args) => (a => (a.length === ((a,b) => a + b).length ? ((a,b) => a + b)(...a) : curry(((a,b) => a + b), a)))([...[], ...args])
+// when .length is called on a function, it returns the number of parameters that function has
+// (...args) => (a => (a.length === 2) ? ((a,b) => a + b)(...a) : curry(((a,b) => a + b), a)))([...[], ...args])
+// Plug in [...[], ...args] as a, which spreads empty array and all arguments
+// (...args) => args.length === 2 ? ((a,b) => a + b)(...args) : curry((a, b) => a + b, args)
+
 const calculateLemonadePrice = lemonade => {
     let result = 0.75
     for (let key in lemonade) {
